@@ -1,4 +1,3 @@
-// RecipeDetail.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -7,9 +6,10 @@ const RecipeDetail = () => {
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/recipes/${id}`)
+    fetch(`http://localhost:3001/recipes/${id}`)
       .then(response => response.json())
-      .then(data => setRecipe(data));
+      .then(data => setRecipe(data))
+      .catch(error => console.error('Error fetching recipe:', error));
   }, [id]);
 
   if (!recipe) return <div>Loading...</div>;
@@ -35,4 +35,3 @@ const RecipeDetail = () => {
 };
 
 export default RecipeDetail;
-
